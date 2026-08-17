@@ -1,0 +1,74 @@
+# Lab 1 — Extrude — Personalised Keychain Token
+
+**Course:** Innovating Product Development with 3D Printing and Additive Manufacturing (TGS-2022017597)  
+**Topic 01:** Overview of Additive Manufacturing and 3D Scanning  
+**TSC objective:** A1 — determine material and design considerations while modelling a printable part with the extrude technique
+
+## Goal
+
+Model an elliptical keychain token in Fusion 360, personalise it with the first letter of your name, then slice it in Cura and 3D print it.
+
+## What you'll build
+
+A personalised elliptical keychain token, sliced and 3D printed in PLA.
+
+**Tools:** Fusion 360, Ultimaker Cura, FDM printer (PLA)
+
+## Steps
+
+1. Create a new design in Fusion 360 and start a sketch on the XY plane.
+
+   ```
+   Fusion 360 ▸ File ▸ New Design ▸ Create Sketch ▸ XY plane
+   ```
+
+2. Draw an ellipse about the origin — approximately 50 mm long and 30 mm wide.
+
+   ```
+   Sketch ▸ Ellipse — major 50 mm, minor 30 mm
+   ```
+
+3. Add a 4 mm circle near one end of the ellipse for the keyring hole, then finish the sketch.
+
+   ```
+   Sketch ▸ Circle — Ø 4 mm ▸ Finish Sketch
+   ```
+
+4. Extrude the ellipse profile (excluding the circle) to 3 mm to form the token body.
+
+   ```
+   Create ▸ Extrude — profile: ellipse, distance 3 mm
+   ```
+
+5. Sketch the first letter of your name on the token's top face and extrude it 1 mm.
+
+   ```
+   Create Sketch ▸ Text — height 18 mm ▸ Extrude 1 mm (Join)
+   ```
+
+6. Export the body as an STL mesh for slicing.
+
+   ```
+   File ▸ Export ▸ STL  (or Utilities ▸ Make ▸ 3D Print)
+   ```
+
+7. Open the STL in Cura, keep the flat face on the build plate, and slice with the default 0.2 mm profile.
+
+   ```
+   Cura ▸ Open File ▸ token.stl ▸ Slice
+   ```
+
+8. Save the G-code and print the token; remove it from the bed once cooled.
+
+   ```
+   Cura ▸ Save to Disk ▸ print
+   ```
+
+
+## Test it
+
+The sliced preview shows the token printing flat with no supports; the printed token carries your raised letter and the keyring hole is clear.
+
+## Files in this folder
+
+- `token.stl`

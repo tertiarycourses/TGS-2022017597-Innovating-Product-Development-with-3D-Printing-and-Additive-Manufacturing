@@ -1,0 +1,85 @@
+"""
+Topic 2 — Process Related Issues for AM (K2, K4 · A2, A3).
+Labs 7–10: slicing, bed adhesion, supports and extrusion/material diagnostics.
+Sample STL files (cube10.stl, twist.stl) ship in the labs' folders.
+"""
+
+DOMAIN2 = [
+    dict(
+        num=7, topic=2,
+        title="Install Cura and Slice Your First Model",
+        objective="A2 — set up the slicing toolchain used to analyse and fix AM process issues",
+        desc="Install Ultimaker Cura, add your printer profile, and slice a calibration cube to understand how the slicer turns an STL into G-code printer instructions.",
+        build="A working Cura installation with your printer profile, and your first sliced G-code file.",
+        services="Ultimaker Cura, cube10.stl",
+        img=["s068_814d1130.jpg", "s069_14621d63.png"],
+        steps=[
+            ("Download Ultimaker Cura for your operating system and run the installer.", "https://ultimaker.com/software/ultimaker-cura"),
+            ("Launch Cura and step through the first-run wizard; skip account sign-in if offered.", "Cura ▸ Get Started"),
+            ("Add your printer — pick the exact model, or 'Custom FFF printer' with your bed size and nozzle diameter.", "Settings ▸ Printer ▸ Add Printer"),
+            ("Open the sample cube from the lab folder.", "File ▸ Open File(s) ▸ cube10.stl"),
+            ("Select the Standard Quality 0.2 mm profile and note the default wall, infill, speed and temperature values.", "Print Settings ▸ Profile — Standard Quality 0.2 mm"),
+            ("Slice the model and read the estimated print time and material use.", "Slice ▸ note time + grams"),
+            ("Open the Preview tab and drag the layer slider to watch the toolpath layer by layer — walls, infill, travels.", "Preview ▸ layer slider"),
+            ("Save the G-code to disk (or SD card) — this file is the printer's complete instruction set.", "Save to Disk ▸ cube10.gcode"),
+        ],
+        test="Cura shows a sliced preview with per-layer toolpaths and a time/material estimate, and a .gcode file is saved — open it in a text editor to see the raw movement commands.",
+    ),
+    dict(
+        num=8, topic=2,
+        title="Bed Adhesion — Skirt vs Brim vs Raft",
+        objective="A2 — analyse first-layer adhesion issues and select the correct adhesion aid",
+        desc="Slice three instances of the same cube with a skirt, a brim and a raft, print them, and compare adhesion strength, removal effort and bottom-surface finish.",
+        build="Three prints of cube10.stl demonstrating skirt, brim and raft — and a rule for when to use each.",
+        services="Ultimaker Cura, cube10.stl, FDM printer",
+        img=["s075_880969df.png", "s075_b39d09b2.png"],
+        steps=[
+            ("Open cube10.stl in Cura and duplicate it twice so three cubes sit on the plate.", "Right-click ▸ Multiply Selected — 2 copies"),
+            ("Select cube 1 and set Build Plate Adhesion to Skirt — a loop that primes the nozzle without touching the part.", "Per Model Settings ▸ Build Plate Adhesion ▸ Skirt"),
+            ("Select cube 2 and set adhesion to Brim, 8 mm — a flat border fused to the part's first layer.", "Build Plate Adhesion ▸ Brim — width 8 mm"),
+            ("Select cube 3 and set adhesion to Raft — a printed platform the part sits on.", "Build Plate Adhesion ▸ Raft"),
+            ("Slice and compare the three toolpaths in Preview; note the extra time and material the raft adds.", "Slice ▸ Preview"),
+            ("Print all three cubes in one job.", "Save to Disk ▸ print"),
+            ("Remove each cube: note how the skirt never touches, the brim peels off the edge, and the raft must be pried from the base.", "Deburring tool / scraper"),
+        ],
+        test="You can state when each aid applies — skirt to prime the nozzle, brim for warping-prone or small-footprint parts, raft for top-heavy or poorly adhering parts — and show the bottom-finish difference.",
+    ),
+    dict(
+        num=9, topic=2,
+        title="Support Structures for Overhangs",
+        objective="A2, A3 — determine when overhang geometry requires supports and generate them",
+        desc="Slice twist.stl — a model with steep overhangs — first without and then with generated supports, print it, and remove the supports cleanly.",
+        build="A printed twist model whose overhangs succeeded because of correctly placed supports.",
+        services="Ultimaker Cura, twist.stl, FDM printer",
+        img=["s076_dae77459.png", "s074_8ea6683f.png"],
+        steps=[
+            ("Open twist.stl in Cura and slice it with supports off.", "File ▸ Open ▸ twist.stl ▸ Slice"),
+            ("In Preview, find the layers that start in mid-air — these overhangs would droop or fail.", "Preview ▸ layer slider — spot unsupported islands"),
+            ("Enable support generation.", "Print Settings ▸ Support ▸ Generate Support ✔"),
+            ("Set placement to Touching Buildplate first; compare with Everywhere and note the difference in Preview.", "Support Placement — Touching Buildplate vs Everywhere"),
+            ("Keep the support overhang angle at 45–50° so only genuinely steep faces get support.", "Support Overhang Angle — 50°"),
+            ("Slice again and compare time and material with the unsupported version, then print.", "Slice ▸ Save to Disk ▸ print"),
+            ("Snap the supports off with pliers, working from the edges inward, and inspect the supported surfaces.", "Needle-nose pliers ▸ remove supports"),
+        ],
+        test="The unsupported slice shows mid-air layers while the supported print completes; supports snap away leaving only minor scarring on the underside.",
+    ),
+    dict(
+        num=10, topic=2,
+        title="Filament Diagnostics — Diameter, Temperature and Flow",
+        objective="A2, A3 — analyse material-side causes of extrusion issues and verify filament quality",
+        desc="Measure filament diameter with digital calipers, verify it against the slicer's material setting, and run a temperature check to place your filament in its working window.",
+        build="A verified filament diameter entry in Cura and a chosen printing temperature backed by test evidence.",
+        services="Digital calipers, filament spool (PLA/ABS/PETG), Ultimaker Cura, FDM printer",
+        img=["s080_19f626c3.png", "s097_19d57a81.png"],
+        steps=[
+            ("Cut off about 30 cm of filament from the spool end.", "Flush cutters — ~30 cm sample"),
+            ("Measure the diameter with digital calipers at five points along the sample, rotating the filament at each point.", "Calipers — 5 readings, 2 orientations each"),
+            ("Average the readings; a good 1.75 mm filament stays within ±0.05 mm.", "Expect 1.70–1.80 mm"),
+            ("Enter the measured diameter in Cura's material settings so flow is computed from reality, not the label.", "Print Settings ▸ Material ▸ Diameter — measured value"),
+            ("Check the material's temperature window: PLA 195–215 °C, PETG 240–260 °C, ABS 240–260 °C, Nylon 240–260 °C.", "Material box / temperature table"),
+            ("Set the printing temperature to the middle of the window and print a small test cube; drop 5 °C if strings appear, raise 5 °C if layers don't bond.", "Material ▸ Printing Temperature — tune in 5 °C steps"),
+            ("Watch the first layers: clicking from the extruder or ground filament means the temperature is too low or the nozzle is partially blocked.", "Listen: extruder clicks = under-extrusion warning"),
+        ],
+        test="Your five caliper readings average within ±0.05 mm of nominal, Cura carries the measured diameter, and the test cube prints with bonded layers and no stringing at the temperature you selected.",
+    ),
+]

@@ -1,0 +1,20 @@
+# Confidential — assessments are Drive-only, never GitHub
+assessment/
+
+# Secrets & local config
+.env
+.claude/lms_tms_api_key
+.claude/.env
+
+# junk
+.DS_Store
+__pycache__/
+*.pyc
+~$*
+.claude/settings.local.json
+
+# assessment builder embeds live exam content — confidential
+.claude/skills/wsq-assessment/build_assessment.py
+
+# superseded versions stay local/Drive only
+courseware/archive/
