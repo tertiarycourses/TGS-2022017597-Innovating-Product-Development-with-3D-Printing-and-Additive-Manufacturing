@@ -1,5 +1,6 @@
 # Confidential — assessments are Drive-only, never GitHub
 assessment/
+reference/
 
 # Secrets & local config
 .env
@@ -18,3 +19,4 @@ __pycache__/
 
 # superseded versions stay local/Drive only
 courseware/archive/
+courseware/QA-REPORT-*.md

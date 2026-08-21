@@ -298,12 +298,15 @@ def activity_overview(a,kicker):
     rect(s,Inches(0.85),Inches(1.85),Inches(1.7),Inches(0.5),TEAL)
     txt(s,Inches(0.85),Inches(1.9),Inches(1.7),Inches(0.4),[[(f"LAB {a['num']}",16,WHITE,True)]],align=PP_ALIGN.CENTER)
     txt(s,Inches(2.75),Inches(1.88),Inches(9.7),Inches(0.5),[[(a["objective"],12.5,GREY,False)]])
-    txt(s,Inches(0.85),Inches(2.6),Inches(11.7),Inches(1.5),[[(a["desc"],19,INK,False)]])
+    desc_size=17 if len(a["desc"])>150 else 19
+    build_size=15 if len(a["build"])>130 else 17
+    service_size=11 if len(a["services"])>120 else 13
+    txt(s,Inches(0.85),Inches(2.6),Inches(11.7),Inches(1.5),[[(a["desc"],desc_size,INK,False)]])
     rect(s,Inches(0.85),Inches(4.25),Inches(11.7),Inches(2.0),LIGHT)
     txt(s,Inches(1.1),Inches(4.45),Inches(11),Inches(0.4),[[("You'll build",14,BLUE,True)]])
-    txt(s,Inches(1.1),Inches(4.85),Inches(11),Inches(0.6),[[(a["build"],17,INK,True)]])
+    txt(s,Inches(1.1),Inches(4.85),Inches(11),Inches(0.6),[[(a["build"],build_size,INK,True)]])
     txt(s,Inches(1.1),Inches(5.55),Inches(11.2),Inches(0.6),
-        [[("Tools:  ",13,GREY,True),(a["services"],13,GREY,False)],
+        [[("Tools:  ",service_size,GREY,True),(a["services"],service_size,GREY,False)],
          [("Step-by-step guide: Learner Guide, Lab ",12,GREY,False),(str(a["num"]),12,GREY,True),
           (f"  ·  labs/lab-{a['num']:02d} folder",12,GREY,False)]],space=4)
     footer(s); return s
@@ -456,7 +459,7 @@ tile_grid("3D Printing vs Additive Manufacturing",[
  kicker="TERMINOLOGY",cols=2,size=15)
 flow_h("A Brief History of 3D Printing",[
  "1981 — Hideo Kodama publishes the first layer-by-layer photopolymer method",
- "1984–87 — Chuck Hull invents stereolithography (SLA) and ships the first commercial printer",
+ "1984–87 — Chuck Hull invents SLA and ships the first commercial system",
  "1988–92 — FDM patented by Scott Crump; SLS emerges for powders",
  "2009 — key FDM patents expire; RepRap & desktop printing explode",
  "Today — metal AM flies in aircraft, implants and rockets"],
@@ -974,12 +977,14 @@ tile_grid("What You Achieved",[
  ("Optimised processes","Infill, surface quality, supports and post-processing — measured, not guessed."),
  ("Assessed business impact","Speed, quality, material, cost and feedback before and after each change.")],
  kicker="LEARNING OUTCOMES DELIVERED",cols=2,size=13)
-img_points("Practice Exam & Revision",_legacy("s015_8266d9af.png"),[
- ("Practice portal","Sharpen your readiness at https://exams.tertiaryinfotech.com."),
- ("Revise the labs","Redo each lab's Test-it check from memory — settings and reasons."),
- ("Know the frameworks","7 process families · 5 issue sources · the improvement loop."),
- ("Open book ≠ open mind","Bookmark your slides and Learner Guide sections before the assessment.")],
- kicker="TEST YOURSELF",caption="exams.tertiaryinfotech.com · lms-tms.tertiaryinfotech.com")
+tile_grid("Diagnostic Model Library",[
+ ("Fit & tolerance","FDM Box Fusion/Cura projects and STL — inspect bodies, orientation, clearance and slicer intent."),
+ ("Support & orientation","Twisted Solid, wedge and sideways-hole cube — distinguish unsupported islands from geometry solved by rotation."),
+ ("Flow & cooling","Retraction towers, cooling spire and combined cooling tower — change one setting and read the printed evidence."),
+ ("Walls & holes","Line-width strip and matched hole-wall cubes — test continuity, wall planning and dimensional accuracy."),
+ ("Optimisation","Four supplied variants — compare support, time and material before selecting the best printable design."),
+ ("Finish & features","Sloped cube, Z block, thin-wall vase and mixed test part — expose stair-stepping, ironing, textures and scars.")],
+ kicker="SUPPLIED STL / FUSION / CURA ASSETS · LABS 5 & 7–16",cols=2,size=12.5)
 img_points("Certificate & TRAQOM Survey",_legacy("s142_59bff3df.png"),[
  ("Certificate of Achievement","Issued on 75% attendance + Competent assessment — download from the LMS."),
  ("OpenCert","SkillsFuture Singapore issues an OpenCert Statement of Attainment."),

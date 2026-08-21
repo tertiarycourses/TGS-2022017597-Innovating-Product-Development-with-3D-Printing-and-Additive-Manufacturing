@@ -12,38 +12,38 @@ Enable Cura's ironing feature, which passes the hot nozzle over the top surface 
 
 Two cube prints — ironed and standard — demonstrating the top-surface improvement.
 
-**Tools:** Ultimaker Cura, cube10.stl, FDM printer
+**Tools:** Ultimaker Cura, cube10.stl, z-block.stl, FDM printer
 
 ## Steps
 
 1. Open cube10.stl and slice with the standard 0.2 mm profile; print cube 1 as the control.
 
    ```
-   Slice ▸ print control cube
+   Slice > print control cube
    ```
 
 2. Enable ironing.
 
    ```
-   Top/Bottom ▸ Enable Ironing ✔
+   Top/Bottom > Enable Ironing ✔
    ```
 
 3. Inspect the ironing pass in Preview — a dense zigzag over the top face at ~10% flow.
 
    ```
-   Preview ▸ top layer ▸ ironing pass
+   Preview > top layer > ironing pass
    ```
 
 4. Slice and note the added time (ironing is slow but only on top faces).
 
    ```
-   Slice ▸ record extra minutes
+   Slice > record extra minutes
    ```
 
 5. Print cube 2 with ironing enabled.
 
    ```
-   Save to Disk ▸ print
+   Save to Disk > print
    ```
 
 6. Compare the two top faces under raking light: the ironed face should be near-flat with faint tool lines.
@@ -52,11 +52,24 @@ Two cube prints — ironed and standard — demonstrating the top-surface improv
    Visual + touch comparison
    ```
 
+7. Repeat the Preview comparison with z-block.stl to inspect how ironing travels around raised detail; print it only if time permits.
+
+   ```
+   Open z-block.stl > Enable Ironing > Preview top layers
+   ```
+
+
+## Evidence to capture
+
+- Control-versus-ironed time/material record.
+- Raking-light photos comparing the flat and detailed top surfaces.
+
 
 ## Test it
 
-The ironed cube's top face is visibly smoother and flatter than the control's, and you can state when the extra time is worth it (visible top faces, lids, logos).
+The ironed cube is visibly smoother than the control, z-block.stl shows ironing constrained to eligible top faces, and you can justify the added time for lids, logos and presentation surfaces.
 
 ## Files in this folder
 
-- `cube10.stl`
+- `cube10.stl` — Core sample model used by the lab procedure.
+- `z-block.stl` — Detailed top-surface benchmark for evaluating ironing around raised geometry.

@@ -10,9 +10,9 @@ Measure filament diameter with digital calipers, verify it against the slicer's 
 
 ## What you'll build
 
-A verified filament diameter entry in Cura and a chosen printing temperature backed by test evidence.
+A verified filament profile plus retraction and cooling evidence from purpose-built diagnostic models.
 
-**Tools:** Digital calipers, filament spool (PLA/ABS/PETG), Ultimaker Cura, FDM printer
+**Tools:** Digital calipers, filament spool (PLA/ABS/PETG), Ultimaker Cura, retraction-test.stl, cooling-spire.stl, FDM printer
 
 ## Steps
 
@@ -37,7 +37,7 @@ A verified filament diameter entry in Cura and a chosen printing temperature bac
 4. Enter the measured diameter in Cura's material settings so flow is computed from reality, not the label.
 
    ```
-   Print Settings ▸ Material ▸ Diameter — measured value
+   Print Settings > Material > Diameter — measured value
    ```
 
 5. Check the material's temperature window: PLA 195–215 °C, PETG 240–260 °C, ABS 240–260 °C, Nylon 240–260 °C.
@@ -49,7 +49,7 @@ A verified filament diameter entry in Cura and a chosen printing temperature bac
 6. Set the printing temperature to the middle of the window and print a small test cube; drop 5 °C if strings appear, raise 5 °C if layers don't bond.
 
    ```
-   Material ▸ Printing Temperature — tune in 5 °C steps
+   Material > Printing Temperature — tune in 5  degrees C steps
    ```
 
 7. Watch the first layers: clicking from the extruder or ground filament means the temperature is too low or the nozzle is partially blocked.
@@ -58,7 +58,32 @@ A verified filament diameter entry in Cura and a chosen printing temperature bac
    Listen: extruder clicks = under-extrusion warning
    ```
 
+8. Slice retraction-test.stl with your baseline retraction, then change only one variable at a time (distance or speed); compare strings without masking jams or surface dimples.
+
+   ```
+   Retraction > record distance + speed > Preview > optional test print
+   ```
+
+9. Slice cooling-spire.stl or twist-with-cooling-tower.stl and compare the upper layers with minimum layer time/fan control enabled and disabled.
+
+   ```
+   Cooling > Enable Print Cooling > Minimum Layer Time > compare tip quality
+   ```
+
+
+## Evidence to capture
+
+- Five filament-diameter readings and the calculated average.
+- Retraction matrix recording distance, speed, stringing and surface defects.
+- Cooling comparison recording fan/minimum-layer-time settings and tip quality.
+
 
 ## Test it
 
-Your five caliper readings average within ±0.05 mm of nominal, Cura carries the measured diameter, and the test cube prints with bonded layers and no stringing at the temperature you selected.
+Your diameter average is within ±0.05 mm of nominal, Cura carries the measured value, and the diagnostic models support a retraction/cooling choice with less stringing and a cleaner spire without introducing gaps or jams.
+
+## Files in this folder
+
+- `retraction-test.stl` — Multi-tower benchmark that exposes stringing during travel moves.
+- `cooling-spire.stl` — Tall narrowing spire that reveals insufficient layer cooling.
+- `twist-with-cooling-tower.stl` — Combined geometry for observing minimum-layer-time and cooling behaviour.

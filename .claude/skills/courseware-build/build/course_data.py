@@ -13,8 +13,8 @@ TSC (Additive Manufacturing, PRE-OPR-4012-1.1) and the assessments.
 TITLE        = "Innovating Product Development with 3D Printing and Additive Manufacturing"
 SHORT_TITLE  = "Innovating Product Development with 3D Printing and Additive Manufacturing"
 COURSE_CODE  = "TGS-2022017597"
-VERSION      = "v8.0"
-VERSION_DATE = "18 August 2026"
+VERSION      = "v8.1"
+VERSION_DATE = "22 August 2026"
 ORG          = "Tertiary Infotech Academy Pte Ltd"
 UEN          = "UEN: 201200696W"
 TRAINER      = "Dr Alfred Ang"
@@ -101,5 +101,6 @@ ASSESSMENT = dict(
     note="A minimum of 75% attendance is required to be eligible for assessment and funding.",
 )
 
-PRACTICE_EXAM_URL = "https://exams.tertiaryinfotech.com"
+# This is a skills-based WSQ course, not preparation for an external certification exam.
+PRACTICE_EXAM_URL = None
 LMS_URL = "https://lms-tms.tertiaryinfotech.com"

@@ -1,6 +1,6 @@
 # Innovating Product Development with 3D Printing and Additive Manufacturing — Learner Guide
 
-**WSQ Course Code:** TGS-2022017597  |  **Conducted by:** Tertiary Infotech Academy Pte Ltd (UEN 201200696W)  |  **Version v8.0 · 18 August 2026**
+**WSQ Course Code:** TGS-2022017597  |  **Conducted by:** Tertiary Infotech Academy Pte Ltd (UEN 201200696W)  |  **Version v8.1 · 22 August 2026**
 
 ## Contents
 
@@ -69,7 +69,7 @@ Use this guide alongside the course slides and the per-lab folders in labs/ of t
 - Ultimaker Cura slicing software — free from https://ultimaker.com/software/ultimaker-cura (installed in Lab 7; install early if you want a head start).
 - An FDM 3D printer with PLA filament (provided in class), plus digital calipers, pliers and sandpaper (120–400 grit) for the tolerance and post-processing labs.
 - A smartphone with a 3D-scanning app for Lab 6 — Polycam or Kiri Engine (Android/iOS), or Scandy Pro / Heges on LiDAR iPhones/iPads.
-- The sample models from the labs/ folders: cube10.stl, twist.stl, open vase.stl and token.stl.
+- The sample and diagnostic models in each labs/ folder, including calibration cubes, support/orientation benchmarks, retraction and cooling tests, wall-line tests, optimisation variants and finishing parts.
 
 **Fusion 360 quick orientation**
 
@@ -168,6 +168,12 @@ A personalised elliptical keychain token, sliced and 3D printed in PLA.   (Tools
    ```
 
 
+**Evidence to capture**
+
+- Fusion 360 screenshot showing the ellipse, 4 mm keyring hole and raised initial.
+- Cura Preview screenshot confirming flat orientation and no supports.
+- Photo or inspection note confirming the printed initial and clear keyring hole.
+
 **Test it**
 
 The sliced preview shows the token printing flat with no supports; the printed token carries your raised letter and the keyring hole is clear.
@@ -239,6 +245,12 @@ A giant paper clip bookmark modelled with the sweep technique and 3D printed fla
    Cura ▸ Slice ▸ Save to Disk ▸ print
    ```
 
+
+**Evidence to capture**
+
+- Fusion 360 screenshot showing the path, perpendicular profile and completed sweep.
+- Cura Preview screenshot confirming full build-plate contact and no supports.
+- Photo or inspection note showing that the printed clip flexes and grips pages.
 
 **Test it**
 
@@ -312,6 +324,12 @@ A mini plant pot lofted from circle to square, 3D printed without supports.   (T
    ```
 
 
+**Evidence to capture**
+
+- Fusion 360 screenshot showing both loft profiles, guide rails and the 2.5 mm shell.
+- Cura Preview screenshot confirming base-down, support-free orientation.
+- Photo or inspection note on wall continuity and the circle-to-square transition.
+
 **Test it**
 
 The pot prints support-free with an even 2.5 mm wall; the loft transition from circle to square is smooth with no layer separation.
@@ -378,6 +396,12 @@ A working funnel revolved from a single 2D profile, printed wide-end down.   (To
    ```
 
 
+**Evidence to capture**
+
+- Fusion 360 screenshot showing the closed half-profile and 360-degree revolve.
+- Cura Preview screenshot confirming wide-end-down orientation and no supports.
+- Photo or water-flow note confirming a clear, functional spout.
+
 **Test it**
 
 Sliced upside-down the funnel needs no supports; water poured into the printed funnel flows cleanly through the spout.
@@ -395,7 +419,13 @@ Goal: Model a container and lid as two separate bodies in Fusion 360 with a 0.2 
 
 **What you'll build**
 
-A two-part container whose lid slides on with a designed 0.2 mm clearance.   (Tools: Fusion 360, Ultimaker Cura, FDM printer (PLA), digital calipers.)
+A two-part container whose lid slides on with a designed 0.2 mm clearance.   (Tools: Fusion 360, Ultimaker Cura, FDM printer (PLA), digital calipers, supplied FDM Box reference files.)
+
+**Supplied model files**
+
+- FDM-Box-Final.f3d — Editable Fusion 360 reference model for design-history and clearance inspection.
+- FDM-Box-Final.stl — Printable mesh for orientation, scale and fit comparison.
+- FDM-Box-Cura.3mf — Cura project retaining the supplied slicer setup for comparison with your own profile.
 
 ![Lab 5 reference — target model / setting](courseware/assets/legacy/s058_89cf95e4.png)
 
@@ -449,10 +479,28 @@ A two-part container whose lid slides on with a designed 0.2 mm clearance.   (To
    Calipers: outer wall vs lid skirt — expect ≈0.2 mm/side
    ```
 
+8. Open FDM-Box-Final.f3d as a read-only reference and inspect how its bodies, wall thickness and clearances are organised; do not replace your own design with it.
+
+   ```
+   Fusion 360 ▸ File ▸ Open ▸ FDM-Box-Final.f3d ▸ Inspect ▸ Measure
+   ```
+
+9. Open FDM-Box-Cura.3mf and compare its saved orientation and slicer settings with your own job; record one setting you would retain and one you would change for your printer.
+
+   ```
+   Cura ▸ File ▸ Open Project ▸ FDM-Box-Cura.3mf
+   ```
+
+
+**Evidence to capture**
+
+- Screenshot of the 0.2 mm designed clearance measured in Fusion 360.
+- Cura comparison showing your model and FDM-Box-Final.stl at the intended scale and orientation.
+- Caliper readings and a short pass/fail note for the printed lid fit.
 
 **Test it**
 
-The lid slides onto the container with light friction — neither loose nor forced — proving the digital 0.2 mm tolerance reproduced physically.
+The lid slides onto the container with light friction — neither loose nor forced — and your evidence distinguishes the designed 0.2 mm clearance, the measured printed result and the supplied FDM Box reference setup.
 
 > **Note:** This lab lives in labs/lab-05-tolerance-container-and-lid/ together with any sample files it needs.
 
@@ -522,6 +570,12 @@ A 3D-printed reproduction of a real object captured by photogrammetry on your ph
    ```
 
 
+**Evidence to capture**
+
+- Screenshot of the cleaned scan with the floor/background removed.
+- Mesh-repair evidence showing a watertight model that loads cleanly in Cura.
+- Photo comparing the source object with the recognisable scaled print.
+
 **Test it**
 
 The exported STL loads into Cura as a watertight mesh, and the printed part is a recognisable scaled reproduction of the scanned object.
@@ -553,7 +607,11 @@ Goal: Install Ultimaker Cura, add your printer profile, and slice a calibration 
 
 **What you'll build**
 
-A working Cura installation with your printer profile, and your first sliced G-code file.   (Tools: Ultimaker Cura, cube10.stl.)
+A working Cura installation with your printer profile, and your first sliced G-code file.   (Tools: Ultimaker Cura, cube10.stl, cube20.stl.)
+
+**Supplied model files**
+
+- cube20.stl — 20 mm calibration cube for scale, dimensional and time/material comparisons.
 
 ![Lab 7 reference — target model / setting](courseware/assets/legacy/s068_814d1130.jpg)
 
@@ -613,10 +671,21 @@ A working Cura installation with your printer profile, and your first sliced G-c
    Save to Disk ▸ cube10.gcode
    ```
 
+9. Repeat the slice with cube20.stl, confirm Cura reads it as 20 × 20 × 20 mm, and compare the time/material estimate with cube10.stl.
+
+   ```
+   File ▸ Open File(s) ▸ cube20.stl ▸ Scale ▸ verify 20 mm on X/Y/Z
+   ```
+
+
+**Evidence to capture**
+
+- Screenshot of cube20.stl in Cura Preview with walls, infill and travel moves visible.
+- Recorded print-time and material estimates for both the 10 mm and 20 mm cubes.
 
 **Test it**
 
-Cura shows a sliced preview with per-layer toolpaths and a time/material estimate, and a .gcode file is saved — open it in a text editor to see the raw movement commands.
+Cura shows per-layer toolpaths for both cubes, cube20.stl measures 20 × 20 × 20 mm, and your comparison explains why doubling linear size increases print time and material by much more than two times.
 
 > **Note:** This lab lives in labs/lab-07-install-cura-and-slice/ together with any sample files it needs.
 
@@ -686,6 +755,12 @@ Three prints of cube10.stl demonstrating skirt, brim and raft — and a rule for
    ```
 
 
+**Evidence to capture**
+
+- Cura Preview screenshot showing the skirt, 8 mm brim and raft toolpaths.
+- Recorded time/material estimate for each adhesion option.
+- Photo or observation table comparing removal effort and bottom-surface finish.
+
 **Test it**
 
 You can state when each aid applies — skirt to prime the nozzle, brim for warping-prone or small-footprint parts, raft for top-heavy or poorly adhering parts — and show the bottom-finish difference.
@@ -699,11 +774,17 @@ You can state when each aid applies — skirt to prime the nozzle, brim for warp
 
 TSC objective: A2, A3 — determine when overhang geometry requires supports and generate them.
 
-Goal: Slice twist.stl — a model with steep overhangs — first without and then with generated supports, print it, and remove the supports cleanly.
+Goal: Use supplied twist, wedge and sideways-hole models to identify unsupported islands, compare orientation choices, then generate only the supports the geometry needs.
 
 **What you'll build**
 
-A printed twist model whose overhangs succeeded because of correctly placed supports.   (Tools: Ultimaker Cura, twist.stl, FDM printer.)
+A support decision sheet plus a printed Twisted Solid whose critical overhangs succeed with controlled support use.   (Tools: Ultimaker Cura, Twisted-Solid.stl, wedge.stl, cube20-sideways-hole.stl, FDM printer.)
+
+**Supplied model files**
+
+- Twisted-Solid.stl — 49 mm twisted benchmark with steep faces and changing overhangs.
+- wedge.stl — Simple 60 mm overhang-angle benchmark for reading progressive underside quality.
+- cube20-sideways-hole.stl — Sideways-hole benchmark for comparing support, bridging and reorientation.
 
 ![Lab 9 reference — target model / setting](courseware/assets/legacy/s076_dae77459.png)
 
@@ -715,10 +796,10 @@ A printed twist model whose overhangs succeeded because of correctly placed supp
 
 **Step-by-step**
 
-1. Open twist.stl in Cura and slice it with supports off.
+1. Open Twisted-Solid.stl in Cura and slice it with supports off.
 
    ```
-   File ▸ Open ▸ twist.stl ▸ Slice
+   File ▸ Open ▸ Twisted-Solid.stl ▸ Slice
    ```
 
 2. In Preview, find the layers that start in mid-air — these overhangs would droop or fail.
@@ -757,10 +838,22 @@ A printed twist model whose overhangs succeeded because of correctly placed supp
    Needle-nose pliers ▸ remove supports
    ```
 
+8. Repeat the analysis with wedge.stl and cube20-sideways-hole.stl; for each, compare adding support with rotating the model to make the geometry self-supporting.
+
+   ```
+   Open both models ▸ Rotate ▸ Slice ▸ Preview ▸ record decision
+   ```
+
+
+**Evidence to capture**
+
+- Three-model support decision table: risk, best orientation, support placement and reason.
+- Before/after Cura Preview screenshots for Twisted-Solid.stl with supports off and on.
+- Photo of the printed benchmark after support removal, with scarring annotated.
 
 **Test it**
 
-The unsupported slice shows mid-air layers while the supported print completes; supports snap away leaving only minor scarring on the underside.
+Your decision table correctly identifies unsupported islands and distinguishes when support is necessary from when reorientation is the better fix; the Twisted Solid print completes with removable support and only minor underside scarring.
 
 > **Note:** This lab lives in labs/lab-09-support-structures-for-overhangs/ together with any sample files it needs.
 
@@ -775,7 +868,13 @@ Goal: Measure filament diameter with digital calipers, verify it against the sli
 
 **What you'll build**
 
-A verified filament diameter entry in Cura and a chosen printing temperature backed by test evidence.   (Tools: Digital calipers, filament spool (PLA/ABS/PETG), Ultimaker Cura, FDM printer.)
+A verified filament profile plus retraction and cooling evidence from purpose-built diagnostic models.   (Tools: Digital calipers, filament spool (PLA/ABS/PETG), Ultimaker Cura, retraction-test.stl, cooling-spire.stl, FDM printer.)
+
+**Supplied model files**
+
+- retraction-test.stl — Multi-tower benchmark that exposes stringing during travel moves.
+- cooling-spire.stl — Tall narrowing spire that reveals insufficient layer cooling.
+- twist-with-cooling-tower.stl — Combined geometry for observing minimum-layer-time and cooling behaviour.
 
 ![Lab 10 reference — target model / setting](courseware/assets/legacy/s080_19f626c3.png)
 
@@ -829,10 +928,28 @@ A verified filament diameter entry in Cura and a chosen printing temperature bac
    Listen: extruder clicks = under-extrusion warning
    ```
 
+8. Slice retraction-test.stl with your baseline retraction, then change only one variable at a time (distance or speed); compare strings without masking jams or surface dimples.
+
+   ```
+   Retraction ▸ record distance + speed ▸ Preview ▸ optional test print
+   ```
+
+9. Slice cooling-spire.stl or twist-with-cooling-tower.stl and compare the upper layers with minimum layer time/fan control enabled and disabled.
+
+   ```
+   Cooling ▸ Enable Print Cooling ▸ Minimum Layer Time ▸ compare tip quality
+   ```
+
+
+**Evidence to capture**
+
+- Five filament-diameter readings and the calculated average.
+- Retraction matrix recording distance, speed, stringing and surface defects.
+- Cooling comparison recording fan/minimum-layer-time settings and tip quality.
 
 **Test it**
 
-Your five caliper readings average within ±0.05 mm of nominal, Cura carries the measured diameter, and the test cube prints with bonded layers and no stringing at the temperature you selected.
+Your diameter average is within ±0.05 mm of nominal, Cura carries the measured value, and the diagnostic models support a retraction/cooling choice with less stringing and a cleaner spire without introducing gaps or jams.
 
 > **Note:** This lab lives in labs/lab-10-filament-diagnostics-diameter-temperature/ together with any sample files it needs.
 
@@ -861,7 +978,13 @@ Goal: Vary wall count and infill density on the same model in Cura, and record h
 
 **What you'll build**
 
-A comparison table of wall/infill settings against sliced print time and material grams.   (Tools: Ultimaker Cura, cube10.stl.)
+A comparison table of wall/infill settings against sliced print time and material grams.   (Tools: Ultimaker Cura, cube10.stl, line-width-test.stl, cube20 hole-wall variants.)
+
+**Supplied model files**
+
+- line-width-test.stl — Thin-wall benchmark for nozzle/line-width and single-wall behaviour.
+- cube20-hole-0-wall.stl — Hole benchmark with the wall-control baseline geometry.
+- cube20-hole-1-wall.stl — Matched hole benchmark for testing the effect of an additional wall.
 
 ![Lab 11 reference — target model / setting](courseware/assets/legacy/s103_fbe7b8a4.png)
 
@@ -909,10 +1032,22 @@ A comparison table of wall/infill settings against sliced print time and materia
    Table: setting → time → grams
    ```
 
+7. Open line-width-test.stl and the two cube20 hole-wall variants; inspect Preview for missing thin features, then record the smallest feature and hole wall your profile resolves continuously.
+
+   ```
+   Open three diagnostic models ▸ Preview ▸ Color Scheme: Line Type
+   ```
+
+
+**Evidence to capture**
+
+- Wall/infill table with time, material and expected load-path notes.
+- Cura Preview comparison of the line-width and matched hole-wall models.
+- Measured hole diameter and wall thickness from any printed benchmark.
 
 **Test it**
 
-Your table shows infill density driving time/material roughly linearly while extra walls add strength more efficiently — and you can justify a setting choice for a functional vs decorative part.
+Your evidence separates wall-count, infill and line-width effects; the matched hole models show how wall planning changes continuity and dimensional accuracy, and you can justify settings for functional versus decorative parts.
 
 > **Note:** This lab lives in labs/lab-11-perimeters-and-infill-strength/ together with any sample files it needs.
 
@@ -927,7 +1062,14 @@ Goal: Print cube10.stl with zigzag 20% and grid 30% infill, tune the top layers,
 
 **What you'll build**
 
-Two printed cubes with different infill patterns/densities and a hands-on strength comparison.   (Tools: Ultimaker Cura, cube10.stl, FDM printer.)
+Two printed cubes with different infill patterns/densities and a hands-on strength comparison.   (Tools: Ultimaker Cura, cube10.stl, Optimize1–4 model set, FDM printer.)
+
+**Supplied model files**
+
+- optimize-1.stl — Complex baseline part for printability and support-cost review.
+- optimize-2.stl — Wide low-profile variant for build-orientation comparison.
+- optimize-3.stl — Twisted variant for support and toolpath comparison.
+- optimize-4.stl — Compact variant for rapid slicing and material-use comparison.
 
 ![Lab 12 reference — target model / setting](courseware/assets/legacy/s106_75b92ae2.png)
 
@@ -975,10 +1117,21 @@ Two printed cubes with different infill patterns/densities and a hands-on streng
    Hand test: wall flex + roof sag
    ```
 
+7. Load optimize-1.stl through optimize-4.stl, orient each for minimum support, and record Cura's estimated time/material before choosing the most efficient printable variant.
+
+   ```
+   Open four models ▸ Auto Orient/Rotate ▸ Slice ▸ record estimates
+   ```
+
+
+**Evidence to capture**
+
+- Optimisation scorecard for all four supplied variants: orientation, support volume, time and material.
+- A justified selection of the best variant/settings for the stated business need.
 
 **Test it**
 
-The grid 30% cube is noticeably stiffer and its roof better supported; you can articulate the pattern/density/time trade-off for a production part.
+The grid 30% cube is stiffer and better supported, while your four-variant scorecard shows that geometry and orientation can outweigh infill choice; your final recommendation is backed by time, material and support evidence.
 
 > **Note:** This lab lives in labs/lab-12-infill-patterns-zigzag-vs/ together with any sample files it needs.
 
@@ -993,7 +1146,11 @@ Goal: Slice the same model at 0.1 mm, 0.2 mm and 0.3 mm layer heights, adjust to
 
 **What you'll build**
 
-Sliced (and optionally printed) evidence of the layer-height ladder: finish vs time.   (Tools: Ultimaker Cura, cube10.stl, FDM printer.)
+Sliced (and optionally printed) evidence of the layer-height ladder: finish vs time.   (Tools: Ultimaker Cura, cube10.stl, sloped-cube.stl, FDM printer.)
+
+**Supplied model files**
+
+- sloped-cube.stl — Sloped-face benchmark that makes layer-height stair-stepping easy to compare.
 
 ![Lab 13 reference — target model / setting](courseware/assets/legacy/s109_6267ac3f.png)
 
@@ -1041,10 +1198,21 @@ Sliced (and optionally printed) evidence of the layer-height ladder: finish vs t
    print both
    ```
 
+7. Repeat the three slices with sloped-cube.stl and zoom into the sloped face; this geometry makes the staircase effect visible in Preview before printing.
+
+   ```
+   Open sloped-cube.stl ▸ Slice at 0.1 / 0.2 / 0.3 mm ▸ compare
+   ```
+
+
+**Evidence to capture**
+
+- Three-row layer-height table with layer count, print time and observed stair-stepping.
+- Matched Preview screenshots of the sloped face at 0.1, 0.2 and 0.3 mm.
 
 **Test it**
 
-You can rank the three layer heights by surface quality and by print time, and state why top thickness (not top layer count) is the setting to keep constant.
+You can rank the layer heights by finish and time, point to visible stair-stepping on sloped-cube.stl, and explain why constant top thickness—not a fixed top-layer count—keeps the comparison fair.
 
 > **Note:** This lab lives in labs/lab-13-layer-height-and-top/ together with any sample files it needs.
 
@@ -1059,7 +1227,11 @@ Goal: Enable Cura's ironing feature, which passes the hot nozzle over the top su
 
 **What you'll build**
 
-Two cube prints — ironed and standard — demonstrating the top-surface improvement.   (Tools: Ultimaker Cura, cube10.stl, FDM printer.)
+Two cube prints — ironed and standard — demonstrating the top-surface improvement.   (Tools: Ultimaker Cura, cube10.stl, z-block.stl, FDM printer.)
+
+**Supplied model files**
+
+- z-block.stl — Detailed top-surface benchmark for evaluating ironing around raised geometry.
 
 ![Lab 14 reference — target model / setting](courseware/assets/legacy/s113_6030b151.png)
 
@@ -1107,10 +1279,21 @@ Two cube prints — ironed and standard — demonstrating the top-surface improv
    Visual + touch comparison
    ```
 
+7. Repeat the Preview comparison with z-block.stl to inspect how ironing travels around raised detail; print it only if time permits.
+
+   ```
+   Open z-block.stl ▸ Enable Ironing ▸ Preview top layers
+   ```
+
+
+**Evidence to capture**
+
+- Control-versus-ironed time/material record.
+- Raking-light photos comparing the flat and detailed top surfaces.
 
 **Test it**
 
-The ironed cube's top face is visibly smoother and flatter than the control's, and you can state when the extra time is worth it (visible top faces, lids, logos).
+The ironed cube is visibly smoother than the control, z-block.stl shows ironing constrained to eligible top faces, and you can justify the added time for lids, logos and presentation surfaces.
 
 > **Note:** This lab lives in labs/lab-14-ironing-glass-smooth-top/ together with any sample files it needs.
 
@@ -1125,7 +1308,11 @@ Goal: Enable fuzzy skin on a vase model so the outer wall is jittered into a sto
 
 **What you'll build**
 
-A vase with a uniform fuzzy texture that masks layer lines completely.   (Tools: Ultimaker Cura, open vase.stl, FDM printer.)
+A vase with a uniform fuzzy texture that masks layer lines completely.   (Tools: Ultimaker Cura, open vase.stl, 1.5mm-wall-vase.stl, FDM printer.)
+
+**Supplied model files**
+
+- 1.5mm-wall-vase.stl — Thin-walled vase benchmark for comparing fuzzy skin with wall-thickness constraints.
 
 ![Lab 15 reference — target model / setting](courseware/assets/legacy/s114_68aaacd7.png)
 
@@ -1173,10 +1360,21 @@ A vase with a uniform fuzzy texture that masks layer lines completely.   (Tools:
    print + inspect
    ```
 
+7. Open 1.5mm-wall-vase.stl and verify the chosen fuzzy-skin thickness will not consume the thin wall; reduce the effect if Preview shows unstable or missing wall paths.
+
+   ```
+   Open 1.5mm-wall-vase.stl ▸ Preview ▸ Line Type ▸ inspect wall continuity
+   ```
+
+
+**Evidence to capture**
+
+- Cura Preview showing fuzzy-skin jitter and the 1.5 mm wall toolpaths.
+- Close-up photo and tactile assessment of the finished texture.
 
 **Test it**
 
-The printed vase carries an even, tactile texture on every outer wall with no visible layer banding — a finish achieved purely in slicing, with zero post-processing.
+The printed vase carries an even tactile texture, and the 1.5 mm diagnostic vase retains continuous walls in Preview—showing that the texture setting fits the available wall thickness.
 
 > **Note:** This lab lives in labs/lab-15-fuzzy-skin-textured-walls/ together with any sample files it needs.
 
@@ -1191,7 +1389,11 @@ Goal: Print the vase tilted so it needs supports, remove them cleanly, then sand
 
 **What you'll build**
 
-A tilted-print vase taken from raw support-scarred print to a smooth finished part.   (Tools: Ultimaker Cura, open vase.stl, FDM printer, pliers, sandpaper 120→400 grit.)
+A tilted-print vase taken from raw support-scarred print to a smooth finished part.   (Tools: Ultimaker Cura, open vase.stl, test-part.stl, FDM printer, pliers, sandpaper 120→400 grit.)
+
+**Supplied model files**
+
+- test-part.stl — Mixed-feature benchmark for planning support removal and progressive finishing.
 
 ![Lab 16 reference — target model / setting](courseware/assets/legacy/s118_7b4d2015.png)
 
@@ -1239,10 +1441,21 @@ A tilted-print vase taken from raw support-scarred print to a smooth finished pa
    Wet sand + compare
    ```
 
+7. Inspect test-part.stl in Cura and write a finishing plan before printing: support access, tool order, surfaces to protect and dimensions that sanding must not change.
+
+   ```
+   Open test-part.stl ▸ Preview supports ▸ annotate finishing plan
+   ```
+
+
+**Evidence to capture**
+
+- Annotated before/after photographs of support scars and the sanded surface.
+- Finishing log with tools, grit sequence, time and observed dimensional/detail loss.
 
 **Test it**
 
-The support side of the vase is smooth to the touch with no visible scars from a normal viewing distance — the part looks moulded rather than printed.
+The support side is smooth from a normal viewing distance, and your evidence shows a planned 120→240→400 grit process that removes scars without rounding protected features or critical dimensions.
 
 > **Note:** This lab lives in labs/lab-16-post-processing-support-removal/ together with any sample files it needs.
 
@@ -1272,9 +1485,9 @@ The support side of the vase is smooth to the touch with no visible scars from a
 
 **Practice**
 
-- Practice portal: https://exams.tertiaryinfotech.com
 - Course portal (slides, guide, assessment submission): https://lms-tms.tertiaryinfotech.com
 - Redo each lab's Test-it check from memory — the practical assessment mirrors the lab skills.
+- Use the supplied diagnostic STL files to explain what each geometry reveals before changing a slicer setting.
 
 
 ## Glossary

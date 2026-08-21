@@ -9,10 +9,15 @@ DOMAIN1 = [
         num=1, topic=1,
         title="Extrude — Personalised Keychain Token",
         objective="A1 — determine material and design considerations while modelling a printable part with the extrude technique",
-        desc="Model an elliptical keychain token in Fusion 360, personalise it with the first letter of your name, then slice it in Cura and 3D print it.",
+        desc="Model an elliptical keychain token, add your initial, then slice and print it.",
         build="A personalised elliptical keychain token, sliced and 3D printed in PLA.",
         services="Fusion 360, Ultimaker Cura, FDM printer (PLA)",
         img=["s050_128a9133.png", "s050_5c7ba9a1.png"],
+        evidence=[
+            "Fusion 360 screenshot showing the ellipse, 4 mm hole and raised initial.",
+            "Cura Preview screenshot confirming flat, support-free orientation.",
+            "Photo or note confirming the raised initial and clear keyring hole.",
+        ],
         steps=[
             ("Create a new design in Fusion 360 and start a sketch on the XY plane.", "Fusion 360 ▸ File ▸ New Design ▸ Create Sketch ▸ XY plane"),
             ("Draw an ellipse about the origin — approximately 50 mm long and 30 mm wide.", "Sketch ▸ Ellipse — major 50 mm, minor 30 mm"),
@@ -33,6 +38,11 @@ DOMAIN1 = [
         build="A giant paper clip bookmark modelled with the sweep technique and 3D printed flat.",
         services="Fusion 360, Ultimaker Cura, FDM printer (PLA)",
         img=["s051_c8aaddc3.png", "s051_60a30def.png"],
+        evidence=[
+            "Fusion 360 screenshot showing the path, perpendicular profile and completed sweep.",
+            "Cura Preview screenshot confirming full build-plate contact and no supports.",
+            "Photo or inspection note showing that the printed clip flexes and grips pages.",
+        ],
         steps=[
             ("Start a sketch on the XY plane and draw the paper-clip path — three nested U-turns — using the Line and Arc tools.", "Create Sketch ▸ Line + Arc (3-point) — overall ~90 × 35 mm"),
             ("Add fillets so every corner of the path is a smooth arc, then finish the sketch.", "Sketch ▸ Fillet — radius 5 mm ▸ Finish Sketch"),
@@ -52,6 +62,11 @@ DOMAIN1 = [
         build="A mini plant pot lofted from circle to square, 3D printed without supports.",
         services="Fusion 360, Ultimaker Cura, FDM printer (PLA)",
         img=["s052_10b7051e.png", "s052_b3baf13d.png"],
+        evidence=[
+            "Fusion 360 screenshot showing both loft profiles, guide rails and the 2.5 mm shell.",
+            "Cura Preview screenshot confirming base-down, support-free orientation.",
+            "Photo or inspection note on wall continuity and the circle-to-square transition.",
+        ],
         steps=[
             ("Sketch a 50 mm circle on the XY plane — this is the pot base.", "Create Sketch ▸ Circle — Ø 50 mm ▸ Finish Sketch"),
             ("Create an offset plane 60 mm above the base and sketch a 60 mm square on it.", "Construct ▸ Offset Plane — 60 mm ▸ Sketch ▸ Rectangle 60 × 60 mm"),
@@ -67,14 +82,19 @@ DOMAIN1 = [
         num=4, topic=1,
         title="Revolve — Funnel from a 2D Profile",
         objective="A1 — apply the revolve technique and choose a print orientation that avoids supports",
-        desc="Model a funnel in Fusion 360 by sketching its half cross-section and revolving it about the vertical axis, then invert it in Cura and 3D print it.",
+        desc="Model a funnel by revolving a half-profile, then invert, slice and print it.",
         build="A working funnel revolved from a single 2D profile, printed wide-end down.",
         services="Fusion 360, Ultimaker Cura, FDM printer (PLA)",
         img=["s053_e0a42cb4.png", "s053_2f68448d.png"],
+        evidence=[
+            "Fusion 360 screenshot of the closed half-profile and 360-degree revolve.",
+            "Cura Preview screenshot showing wide-end-down, support-free orientation.",
+            "Photo or water-flow note confirming a clear spout.",
+        ],
         steps=[
-            ("Sketch the funnel's half profile on the XZ plane: a wide cone tapering into a narrow spout, drawn as a closed outline 2 mm thick.", "Create Sketch ▸ Line — cone Ø 60 mm → spout Ø 8 mm, wall 2 mm"),
+            ("Sketch a closed 2 mm funnel half-profile on the XZ plane: wide cone to narrow spout.", "Create Sketch ▸ Line — cone Ø 60 mm → spout Ø 8 mm, wall 2 mm"),
             ("Revolve the profile 360° around the vertical (Z) axis to form the funnel body.", "Create ▸ Revolve — profile: half section, axis: Z, angle 360°"),
-            ("Check the wall is watertight and uniform using the Inspect ▸ Section Analysis tool.", "Inspect ▸ Section Analysis"),
+            ("Use Inspect ▸ Section Analysis to confirm a watertight, uniform wall.", "Inspect ▸ Section Analysis"),
             ("Export the funnel as an STL file.", "File ▸ Export ▸ STL"),
             ("Open it in Cura — it imports spout-up; rotate it so the wide mouth sits on the build plate.", "Cura ▸ Rotate — 180° about X (wide end down)"),
             ("Slice and confirm the cone angle prints without supports, then print.", "Cura ▸ Slice ▸ Preview ▸ Save to Disk"),
@@ -87,7 +107,17 @@ DOMAIN1 = [
         objective="A1 — determine digital and physical tolerances between assembling parts",
         desc="Model a container and lid as two separate bodies in Fusion 360 with a 0.2 mm clearance, verify the digital tolerance, then 3D print and test the physical fit.",
         build="A two-part container whose lid slides on with a designed 0.2 mm clearance.",
-        services="Fusion 360, Ultimaker Cura, FDM printer (PLA), digital calipers",
+        services="Fusion 360, Ultimaker Cura, FDM printer (PLA), digital calipers, supplied FDM Box reference files",
+        assets=[
+            dict(source="reference/stl files/FDM Box Final.f3d", name="FDM-Box-Final.f3d", purpose="Editable Fusion 360 reference model for design-history and clearance inspection."),
+            dict(source="reference/stl files/FDM Box Final.stl", name="FDM-Box-Final.stl", purpose="Printable mesh for orientation, scale and fit comparison."),
+            dict(source="reference/stl files/FDM Box Cura.3mf", name="FDM-Box-Cura.3mf", purpose="Cura project retaining the supplied slicer setup for comparison with your own profile."),
+        ],
+        evidence=[
+            "Screenshot of the 0.2 mm designed clearance measured in Fusion 360.",
+            "Cura comparison showing your model and FDM-Box-Final.stl at the intended scale and orientation.",
+            "Caliper readings and a short pass/fail note for the printed lid fit.",
+        ],
         img=["s058_89cf95e4.png", "s058_e7e63691.png"],
         steps=[
             ("Model a 50 × 50 × 30 mm box and shell it to 2 mm walls with the top face removed.", "Create ▸ Box 50×50×30 ▸ Modify ▸ Shell — 2 mm"),
@@ -97,8 +127,10 @@ DOMAIN1 = [
             ("In Cura, print the container open-end up; rotate the lid open-end up as well (invert it).", "Cura ▸ Open Files ▸ Rotate lid 180°"),
             ("Slice and print both parts in one job.", "Cura ▸ Slice ▸ Save to Disk ▸ print"),
             ("Measure the printed gap with digital calipers and test the fit.", "Calipers: outer wall vs lid skirt — expect ≈0.2 mm/side"),
+            ("Open FDM-Box-Final.f3d as a read-only reference and inspect how its bodies, wall thickness and clearances are organised; do not replace your own design with it.", "Fusion 360 ▸ File ▸ Open ▸ FDM-Box-Final.f3d ▸ Inspect ▸ Measure"),
+            ("Open FDM-Box-Cura.3mf and compare its saved orientation and slicer settings with your own job; record one setting you would retain and one you would change for your printer.", "Cura ▸ File ▸ Open Project ▸ FDM-Box-Cura.3mf"),
         ],
-        test="The lid slides onto the container with light friction — neither loose nor forced — proving the digital 0.2 mm tolerance reproduced physically.",
+        test="The lid slides onto the container with light friction — neither loose nor forced — and your evidence distinguishes the designed 0.2 mm clearance, the measured printed result and the supplied FDM Box reference setup.",
     ),
     dict(
         num=6, topic=1,
@@ -108,6 +140,11 @@ DOMAIN1 = [
         build="A 3D-printed reproduction of a real object captured by photogrammetry on your phone.",
         services="Polycam / Kiri Engine / Scandy Pro (mobile), Fusion 360, Ultimaker Cura",
         img=["s063_b755c7f2.png", "s043_7d00753f.jpg"],
+        evidence=[
+            "Screenshot of the cleaned scan with the floor/background removed.",
+            "Mesh-repair evidence showing a watertight model that loads cleanly in Cura.",
+            "Photo comparing the source object with the recognisable scaled print.",
+        ],
         steps=[
             ("Install a 3D scanning app on your phone — Polycam or Kiri Engine (Android/iOS), or Scandy Pro / Heges (iOS LiDAR).", "App Store / Google Play ▸ Polycam or Kiri Engine"),
             ("Pick a matte, textured object about the size of a mug and place it on a contrasting background with even lighting.", "Object: non-shiny, non-transparent, stable"),

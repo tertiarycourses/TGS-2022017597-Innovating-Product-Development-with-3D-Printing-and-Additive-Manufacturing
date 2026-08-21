@@ -72,7 +72,7 @@ bullets([
  "Ultimaker Cura slicing software — free from https://ultimaker.com/software/ultimaker-cura (installed in Lab 7; install early if you want a head start).",
  "An FDM 3D printer with PLA filament (provided in class), plus digital calipers, pliers and sandpaper (120–400 grit) for the tolerance and post-processing labs.",
  "A smartphone with a 3D-scanning app for Lab 6 — Polycam or Kiri Engine (Android/iOS), or Scandy Pro / Heges on LiDAR iPhones/iPads.",
- "The sample models from the labs/ folders: cube10.stl, twist.stl, open vase.stl and token.stl.",
+ "The sample and diagnostic models in each labs/ folder, including calibration cubes, support/orientation benchmarks, retraction and cooling tests, wall-line tests, optimisation variants and finishing parts.",
 ])
 h3("Fusion 360 quick orientation")
 bullets([
@@ -100,12 +100,18 @@ for t in C.TOPICS:
         p(f"Goal: {a['desc']}")
         h3("What you'll build")
         p(a["build"]+f"   (Tools: {a['services']}.)")
+        if a.get("assets"):
+            h3("Supplied model files")
+            bullets([f"{asset['name']} — {asset['purpose']}" for asset in a["assets"]])
         for gi,im in enumerate(a.get("img") or []):
             ip=os.path.join(LEGACY,im)
             if os.path.exists(ip):
                 img(ip, f"Lab {a['num']} reference — "+("target model / setting" if gi==0 else "as prepared in the tool"))
         h3("Step-by-step")
         steps(list(a["steps"]))
+        if a.get("evidence"):
+            h3("Evidence to capture")
+            bullets(a["evidence"])
         h3("Test it")
         p(a["test"])
         note(f"This lab lives in labs/{lab_dir(a)}/ together with any sample files it needs.")
@@ -132,11 +138,14 @@ bullets([
  "A6 — Impact assessment: baseline → change → measure → compare → decide, across production speed, material use/wastage, quality (accuracy, finish, properties), resource utilisation, cost and operator feedback.",
 ])
 h3("Practice")
-bullets([
- "Practice portal: https://exams.tertiaryinfotech.com",
+practice_items=[
  "Course portal (slides, guide, assessment submission): https://lms-tms.tertiaryinfotech.com",
  "Redo each lab's Test-it check from memory — the practical assessment mirrors the lab skills.",
-])
+ "Use the supplied diagnostic STL files to explain what each geometry reveals before changing a slicer setting.",
+]
+if C.PRACTICE_EXAM_URL:
+    practice_items.insert(0,f"Practice portal: {C.PRACTICE_EXAM_URL}")
+bullets(practice_items)
 
 h1("Glossary")
 gl=[
@@ -213,10 +222,13 @@ prodoc.add_cover_page(doc,"LEARNER GUIDE",C.TITLE,C.VERSION.lstrip("v"),
                       course_logo=None, course_code=C.COURSE_CODE)
 prodoc.add_version_control(doc,[
  ("7.0","1 June 2025","Legacy release accompanying the v7 trainer deck.",C.TRAINER),
- (C.VERSION.lstrip("v"),C.VERSION_DATE,
+ ("8.0","18 August 2026",
   "Full regeneration: 16 hands-on labs with detailed step-by-step guides (Fusion 360 design labs, "
   "Cura slicing/adhesion/support labs, optimisation and post-processing labs), enriched AM theory, "
   "revision section mapped to K1–K7 / A1–A5, and expanded glossary.",C.TRAINER),
+ (C.VERSION.lstrip("v"),C.VERSION_DATE,
+  "Enhanced Labs 5 and 7–16 with supplied editable, STL and Cura diagnostic assets; added model-specific "
+  "procedures, evidence requirements and acceptance checks; aligned the deck, Learner Guide and labs.",C.TRAINER),
 ])
 prodoc.add_toc(doc)
 
@@ -226,11 +238,16 @@ def code_para(text):
         r=para.add_run(line); r.font.name="Consolas"; r.font.size=Pt(9.5); r.font.color.rgb=INKCODE
 
 for kind,*rest in B:
-    if kind=="h1": doc.add_heading(rest[0],level=1)
-    elif kind=="h2": doc.add_heading(rest[0],level=2)
+    if kind=="h1":
+        para=doc.add_heading(rest[0],level=1); para.paragraph_format.keep_with_next=True
+    elif kind=="h2":
+        para=doc.add_heading(rest[0],level=2); para.paragraph_format.keep_with_next=True
     elif kind=="h3":
         para=doc.add_paragraph(); r=para.add_run(rest[0]); r.bold=True; r.font.size=Pt(11); r.font.color.rgb=BRAND
-    elif kind=="p": doc.add_paragraph(rest[0])
+        para.paragraph_format.keep_with_next=True
+    elif kind=="p":
+        para=doc.add_paragraph(rest[0])
+        if 'prev_kind' in locals() and prev_kind=="h2": para.paragraph_format.keep_with_next=True
     elif kind=="bullets":
         for x in rest[0]: doc.add_paragraph(x,style="List Bullet")
     elif kind=="steps":
@@ -255,6 +272,7 @@ for kind,*rest in B:
         for term,defn in rest[0]:
             para=doc.add_paragraph(style="List Bullet")
             r=para.add_run(term+" — "); r.bold=True; para.add_run(defn)
+    prev_kind=kind
 
 prodoc.add_page_numbers(doc)
 prodoc.enable_update_fields(doc)

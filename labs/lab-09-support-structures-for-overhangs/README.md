@@ -6,32 +6,32 @@
 
 ## Goal
 
-Slice twist.stl — a model with steep overhangs — first without and then with generated supports, print it, and remove the supports cleanly.
+Use supplied twist, wedge and sideways-hole models to identify unsupported islands, compare orientation choices, then generate only the supports the geometry needs.
 
 ## What you'll build
 
-A printed twist model whose overhangs succeeded because of correctly placed supports.
+A support decision sheet plus a printed Twisted Solid whose critical overhangs succeed with controlled support use.
 
-**Tools:** Ultimaker Cura, twist.stl, FDM printer
+**Tools:** Ultimaker Cura, Twisted-Solid.stl, wedge.stl, cube20-sideways-hole.stl, FDM printer
 
 ## Steps
 
-1. Open twist.stl in Cura and slice it with supports off.
+1. Open Twisted-Solid.stl in Cura and slice it with supports off.
 
    ```
-   File ▸ Open ▸ twist.stl ▸ Slice
+   File > Open > Twisted-Solid.stl > Slice
    ```
 
 2. In Preview, find the layers that start in mid-air — these overhangs would droop or fail.
 
    ```
-   Preview ▸ layer slider — spot unsupported islands
+   Preview > layer slider — spot unsupported islands
    ```
 
 3. Enable support generation.
 
    ```
-   Print Settings ▸ Support ▸ Generate Support ✔
+   Print Settings > Support > Generate Support ✔
    ```
 
 4. Set placement to Touching Buildplate first; compare with Everywhere and note the difference in Preview.
@@ -43,26 +43,42 @@ A printed twist model whose overhangs succeeded because of correctly placed supp
 5. Keep the support overhang angle at 45–50° so only genuinely steep faces get support.
 
    ```
-   Support Overhang Angle — 50°
+   Support Overhang Angle — 50 degrees
    ```
 
 6. Slice again and compare time and material with the unsupported version, then print.
 
    ```
-   Slice ▸ Save to Disk ▸ print
+   Slice > Save to Disk > print
    ```
 
 7. Snap the supports off with pliers, working from the edges inward, and inspect the supported surfaces.
 
    ```
-   Needle-nose pliers ▸ remove supports
+   Needle-nose pliers > remove supports
    ```
+
+8. Repeat the analysis with wedge.stl and cube20-sideways-hole.stl; for each, compare adding support with rotating the model to make the geometry self-supporting.
+
+   ```
+   Open both models > Rotate > Slice > Preview > record decision
+   ```
+
+
+## Evidence to capture
+
+- Three-model support decision table: risk, best orientation, support placement and reason.
+- Before/after Cura Preview screenshots for Twisted-Solid.stl with supports off and on.
+- Photo of the printed benchmark after support removal, with scarring annotated.
 
 
 ## Test it
 
-The unsupported slice shows mid-air layers while the supported print completes; supports snap away leaving only minor scarring on the underside.
+Your decision table correctly identifies unsupported islands and distinguishes when support is necessary from when reorientation is the better fix; the Twisted Solid print completes with removable support and only minor underside scarring.
 
 ## Files in this folder
 
-- `twist.stl`
+- `twist.stl` — Core sample model used by the lab procedure.
+- `Twisted-Solid.stl` — 49 mm twisted benchmark with steep faces and changing overhangs.
+- `wedge.stl` — Simple 60 mm overhang-angle benchmark for reading progressive underside quality.
+- `cube20-sideways-hole.stl` — Sideways-hole benchmark for comparing support, bridging and reorientation.

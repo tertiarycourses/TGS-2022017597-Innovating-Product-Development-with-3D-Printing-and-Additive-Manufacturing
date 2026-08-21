@@ -19,44 +19,51 @@ A giant paper clip bookmark modelled with the sweep technique and 3D printed fla
 1. Start a sketch on the XY plane and draw the paper-clip path — three nested U-turns — using the Line and Arc tools.
 
    ```
-   Create Sketch ▸ Line + Arc (3-point) — overall ~90 × 35 mm
+   Create Sketch > Line + Arc (3-point) — overall ~90 x 35 mm
    ```
 
 2. Add fillets so every corner of the path is a smooth arc, then finish the sketch.
 
    ```
-   Sketch ▸ Fillet — radius 5 mm ▸ Finish Sketch
+   Sketch > Fillet — radius 5 mm > Finish Sketch
    ```
 
 3. Create a plane perpendicular to one end of the path and sketch a 2.5 mm circle on it.
 
    ```
-   Construct ▸ Plane Along Path (t=0) ▸ Sketch ▸ Circle Ø 2.5 mm
+   Construct > Plane Along Path (t=0) > Sketch > Circle Ø 2.5 mm
    ```
 
 4. Sweep the circle along the path to form the solid clip.
 
    ```
-   Create ▸ Sweep — profile: circle, path: clip sketch
+   Create > Sweep — profile: circle, path: clip sketch
    ```
 
 5. Export the body as an STL file.
 
    ```
-   File ▸ Export ▸ STL
+   File > Export > STL
    ```
 
 6. Open it in Cura and lay the clip flat on the build plate so no supports are needed.
 
    ```
-   Cura ▸ Open File ▸ clip.stl ▸ Rotate — flat
+   Cura > Open File > clip.stl > Rotate — flat
    ```
 
 7. Slice with a 0.2 mm profile and print.
 
    ```
-   Cura ▸ Slice ▸ Save to Disk ▸ print
+   Cura > Slice > Save to Disk > print
    ```
+
+
+## Evidence to capture
+
+- Fusion 360 screenshot showing the path, perpendicular profile and completed sweep.
+- Cura Preview screenshot confirming full build-plate contact and no supports.
+- Photo or inspection note showing that the printed clip flexes and grips pages.
 
 
 ## Test it

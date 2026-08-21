@@ -6,7 +6,7 @@
 
 ## Goal
 
-Model a funnel in Fusion 360 by sketching its half cross-section and revolving it about the vertical axis, then invert it in Cura and 3D print it.
+Model a funnel by revolving a half-profile, then invert, slice and print it.
 
 ## What you'll build
 
@@ -16,41 +16,48 @@ A working funnel revolved from a single 2D profile, printed wide-end down.
 
 ## Steps
 
-1. Sketch the funnel's half profile on the XZ plane: a wide cone tapering into a narrow spout, drawn as a closed outline 2 mm thick.
+1. Sketch a closed 2 mm funnel half-profile on the XZ plane: wide cone to narrow spout.
 
    ```
-   Create Sketch ▸ Line — cone Ø 60 mm → spout Ø 8 mm, wall 2 mm
+   Create Sketch > Line — cone Ø 60 mm -> spout Ø 8 mm, wall 2 mm
    ```
 
 2. Revolve the profile 360° around the vertical (Z) axis to form the funnel body.
 
    ```
-   Create ▸ Revolve — profile: half section, axis: Z, angle 360°
+   Create > Revolve — profile: half section, axis: Z, angle 360 degrees
    ```
 
-3. Check the wall is watertight and uniform using the Inspect ▸ Section Analysis tool.
+3. Use Inspect > Section Analysis to confirm a watertight, uniform wall.
 
    ```
-   Inspect ▸ Section Analysis
+   Inspect > Section Analysis
    ```
 
 4. Export the funnel as an STL file.
 
    ```
-   File ▸ Export ▸ STL
+   File > Export > STL
    ```
 
 5. Open it in Cura — it imports spout-up; rotate it so the wide mouth sits on the build plate.
 
    ```
-   Cura ▸ Rotate — 180° about X (wide end down)
+   Cura > Rotate — 180 degrees  about X (wide end down)
    ```
 
 6. Slice and confirm the cone angle prints without supports, then print.
 
    ```
-   Cura ▸ Slice ▸ Preview ▸ Save to Disk
+   Cura > Slice > Preview > Save to Disk
    ```
+
+
+## Evidence to capture
+
+- Fusion 360 screenshot of the closed half-profile and 360-degree revolve.
+- Cura Preview screenshot showing wide-end-down, support-free orientation.
+- Photo or water-flow note confirming a clear spout.
 
 
 ## Test it

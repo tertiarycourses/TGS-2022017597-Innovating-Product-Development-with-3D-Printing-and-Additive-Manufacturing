@@ -19,44 +19,51 @@ A mini plant pot lofted from circle to square, 3D printed without supports.
 1. Sketch a 50 mm circle on the XY plane — this is the pot base.
 
    ```
-   Create Sketch ▸ Circle — Ø 50 mm ▸ Finish Sketch
+   Create Sketch > Circle — Ø 50 mm > Finish Sketch
    ```
 
 2. Create an offset plane 60 mm above the base and sketch a 60 mm square on it.
 
    ```
-   Construct ▸ Offset Plane — 60 mm ▸ Sketch ▸ Rectangle 60 × 60 mm
+   Construct > Offset Plane — 60 mm > Sketch > Rectangle 60 x 60 mm
    ```
 
 3. Loft from the circle to the square; add guide rails between matching points to control the curve.
 
    ```
-   Create ▸ Loft — profiles: circle + square, rails: optional splines
+   Create > Loft — profiles: circle + square, rails: optional splines
    ```
 
 4. Shell the solid to a 2.5 mm wall, removing the top face, to hollow the pot.
 
    ```
-   Modify ▸ Shell — face: top, thickness 2.5 mm
+   Modify > Shell — face: top, thickness 2.5 mm
    ```
 
 5. Export the pot as an STL file.
 
    ```
-   File ▸ Export ▸ STL
+   File > Export > STL
    ```
 
 6. Slice in Cura standing base-down; no supports are needed because the walls flare outward.
 
    ```
-   Cura ▸ Open File ▸ pot.stl ▸ Slice
+   Cura > Open File > pot.stl > Slice
    ```
 
 7. Print the pot and inspect the loft surface finish.
 
    ```
-   Cura ▸ Save to Disk ▸ print
+   Cura > Save to Disk > print
    ```
+
+
+## Evidence to capture
+
+- Fusion 360 screenshot showing both loft profiles, guide rails and the 2.5 mm shell.
+- Cura Preview screenshot confirming base-down, support-free orientation.
+- Photo or inspection note on wall continuity and the circle-to-square transition.
 
 
 ## Test it

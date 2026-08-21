@@ -12,20 +12,20 @@ Enable fuzzy skin on a vase model so the outer wall is jittered into a stone-lik
 
 A vase with a uniform fuzzy texture that masks layer lines completely.
 
-**Tools:** Ultimaker Cura, open vase.stl, FDM printer
+**Tools:** Ultimaker Cura, open vase.stl, 1.5mm-wall-vase.stl, FDM printer
 
 ## Steps
 
 1. Open 'open vase.stl' in Cura.
 
    ```
-   File ▸ Open ▸ open vase.stl
+   File > Open > open vase.stl
    ```
 
 2. Enable fuzzy skin — the slicer adds random jitter to the outer wall toolpath.
 
    ```
-   Experimental ▸ Fuzzy Skin ✔
+   Experimental > Fuzzy Skin ✔
    ```
 
 3. Set fuzzy skin thickness to 0.3 mm and density to 1.25/mm for a fine stone texture.
@@ -37,13 +37,13 @@ A vase with a uniform fuzzy texture that masks layer lines completely.
 4. Add a brim so the tall thin vase stays anchored.
 
    ```
-   Build Plate Adhesion ▸ Brim
+   Build Plate Adhesion > Brim
    ```
 
 5. Slice and inspect the jittered outer wall in Preview.
 
    ```
-   Slice ▸ Preview ▸ outer wall
+   Slice > Preview > outer wall
    ```
 
 6. Print the vase and examine the texture — layer lines should be invisible within the fuzz.
@@ -52,11 +52,24 @@ A vase with a uniform fuzzy texture that masks layer lines completely.
    print + inspect
    ```
 
+7. Open 1.5mm-wall-vase.stl and verify the chosen fuzzy-skin thickness will not consume the thin wall; reduce the effect if Preview shows unstable or missing wall paths.
+
+   ```
+   Open 1.5mm-wall-vase.stl > Preview > Line Type > inspect wall continuity
+   ```
+
+
+## Evidence to capture
+
+- Cura Preview showing fuzzy-skin jitter and the 1.5 mm wall toolpaths.
+- Close-up photo and tactile assessment of the finished texture.
+
 
 ## Test it
 
-The printed vase carries an even, tactile texture on every outer wall with no visible layer banding — a finish achieved purely in slicing, with zero post-processing.
+The printed vase carries an even tactile texture, and the 1.5 mm diagnostic vase retains continuous walls in Preview—showing that the texture setting fits the available wall thickness.
 
 ## Files in this folder
 
-- `open vase.stl`
+- `open vase.stl` — Core sample model used by the lab procedure.
+- `1.5mm-wall-vase.stl` — Thin-walled vase benchmark for comparing fuzzy skin with wall-thickness constraints.

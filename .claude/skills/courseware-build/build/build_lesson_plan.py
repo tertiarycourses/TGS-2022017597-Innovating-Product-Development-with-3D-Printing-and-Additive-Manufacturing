@@ -13,6 +13,8 @@ from docx import Document
 from docx.shared import Pt, RGBColor, Inches
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.enum.table import WD_TABLE_ALIGNMENT
+from docx.oxml import OxmlElement
+from docx.oxml.ns import qn
 
 HERE=os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0,HERE)
 import course_data as C
@@ -92,10 +94,13 @@ prodoc.add_cover_page(doc,"LESSON PLAN",C.TITLE,C.VERSION.lstrip("v"),
                       course_logo=None, course_code=C.COURSE_CODE)
 prodoc.add_version_control(doc,[
  ("7.0","1 June 2025","Legacy release — v7 trainer deck and schedule.",C.TRAINER),
- (C.VERSION.lstrip("v"),C.VERSION_DATE,
+ ("8.0","18 August 2026",
   "Full regeneration: single-source rebuild aligned to the v8.0 slide deck (150 slides), "
   "16 hands-on labs in per-lab folders, enriched AM content (NIST/ISO-ASTM process families, "
   "materials, case studies) and the WA (SAQ) + PP assessment.",C.TRAINER),
+ (C.VERSION.lstrip("v"),C.VERSION_DATE,
+  "Aligned the 150-slide deck and 16-lab schedule to the supplied diagnostic STL/Fusion/Cura assets; "
+  "added evidence-based calibration, support, retraction, cooling, wall, optimisation and finishing tasks.",C.TRAINER),
 ])
 prodoc.add_toc(doc)
 
@@ -150,6 +155,7 @@ for day,(theme,rows) in SCHEDULE.items():
     hdr=tbl.add_row().cells
     for i,htext in enumerate(["Time","Duration","Topic / Activity"]):
         set_cell(hdr[i],htext,bold=True,size=10,color=RGBColor(0xFF,0xFF,0xFF),fill=HEADER_FILL)
+    tbl.rows[0]._tr.get_or_add_trPr().append(OxmlElement('w:tblHeader'))
     training=0
     for start,end,mins,kind,text in rows:
         cells=tbl.add_row().cells; fill=KIND_FILL.get(kind)
@@ -158,6 +164,7 @@ for day,(theme,rows) in SCHEDULE.items():
         set_cell(cells[2],text,bold=(kind in ("topic","assess")),size=9.5,fill=fill)
         if kind!="lunch": training+=mins
     for row in tbl.rows:
+        row._tr.get_or_add_trPr().append(OxmlElement('w:cantSplit'))
         row.cells[0].width=Inches(1.15); row.cells[1].width=Inches(0.9); row.cells[2].width=Inches(4.75)
     p=doc.add_paragraph(); r=p.add_run(f"Total training time: {training} minutes ({training//60} hours)."); r.italic=True; r.font.size=Pt(9.5); r.font.color.rgb=GREY
     assert training==480, f"Day {day} training minutes = {training}, expected 480"

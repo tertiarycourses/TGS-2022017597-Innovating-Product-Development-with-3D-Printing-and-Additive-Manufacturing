@@ -11,7 +11,17 @@ DOMAIN3 = [
         objective="A5, A6 — apply wall/infill optimisation and assess its measured impact on time and material",
         desc="Vary wall count and infill density on the same model in Cura, and record how each change moves print time, material use and expected strength.",
         build="A comparison table of wall/infill settings against sliced print time and material grams.",
-        services="Ultimaker Cura, cube10.stl",
+        services="Ultimaker Cura, cube10.stl, line-width-test.stl, cube20 hole-wall variants",
+        assets=[
+            dict(source="reference/stl files/LineWidthTest.stl", name="line-width-test.stl", purpose="Thin-wall benchmark for nozzle/line-width and single-wall behaviour."),
+            dict(source="reference/stl files2 /cube20hole-0wall.stl", name="cube20-hole-0-wall.stl", purpose="Hole benchmark with the wall-control baseline geometry."),
+            dict(source="reference/stl files2 /cube20hole-1wall.stl", name="cube20-hole-1-wall.stl", purpose="Matched hole benchmark for testing the effect of an additional wall."),
+        ],
+        evidence=[
+            "Wall/infill table with time, material and expected load-path notes.",
+            "Cura Preview comparison of the line-width and matched hole-wall models.",
+            "Measured hole diameter and wall thickness from any printed benchmark.",
+        ],
         img=["s103_fbe7b8a4.png", "s104_2e49c790.png"],
         steps=[
             ("Open cube10.stl and slice with the defaults — 2 walls, 20% infill; record time and grams.", "Slice ▸ record: baseline"),
@@ -20,8 +30,9 @@ DOMAIN3 = [
             ("Set infill density to 50% and re-slice; record.", "Infill ▸ Density — 50%"),
             ("In Preview, inspect how the infill lattice and wall thickness change at each setting.", "Preview ▸ layer slider"),
             ("Tabulate the four runs: time, grams, and where the strength actually comes from (walls more than infill).", "Table: setting → time → grams"),
+            ("Open line-width-test.stl and the two cube20 hole-wall variants; inspect Preview for missing thin features, then record the smallest feature and hole wall your profile resolves continuously.", "Open three diagnostic models ▸ Preview ▸ Color Scheme: Line Type"),
         ],
-        test="Your table shows infill density driving time/material roughly linearly while extra walls add strength more efficiently — and you can justify a setting choice for a functional vs decorative part.",
+        test="Your evidence separates wall-count, infill and line-width effects; the matched hole models show how wall planning changes continuity and dimensional accuracy, and you can justify settings for functional versus decorative parts.",
     ),
     dict(
         num=12, topic=3,
@@ -29,7 +40,17 @@ DOMAIN3 = [
         objective="A5 — evaluate infill pattern and density as a quality-improvement technique",
         desc="Print cube10.stl with zigzag 20% and grid 30% infill, tune the top layers, then compare the two cubes' stiffness by hand.",
         build="Two printed cubes with different infill patterns/densities and a hands-on strength comparison.",
-        services="Ultimaker Cura, cube10.stl, FDM printer",
+        services="Ultimaker Cura, cube10.stl, Optimize1–4 model set, FDM printer",
+        assets=[
+            dict(source="reference/stl files/Optimize1.stl", name="optimize-1.stl", purpose="Complex baseline part for printability and support-cost review."),
+            dict(source="reference/stl files/Optimize2.stl", name="optimize-2.stl", purpose="Wide low-profile variant for build-orientation comparison."),
+            dict(source="reference/stl files/Optimize3.stl", name="optimize-3.stl", purpose="Twisted variant for support and toolpath comparison."),
+            dict(source="reference/stl files/Optimize4.stl", name="optimize-4.stl", purpose="Compact variant for rapid slicing and material-use comparison."),
+        ],
+        evidence=[
+            "Optimisation scorecard for all four supplied variants: orientation, support volume, time and material.",
+            "A justified selection of the best variant/settings for the stated business need.",
+        ],
         img=["s106_75b92ae2.png", "s106_8adbb0a2.png"],
         steps=[
             ("Open cube10.stl and set infill pattern to Zigzag at 20% density.", "Infill ▸ Pattern — Zigzag, Density — 20%"),
@@ -38,8 +59,9 @@ DOMAIN3 = [
             ("Change the pattern to Grid at 30% density and re-slice; note the time difference.", "Infill ▸ Pattern — Grid, Density — 30%"),
             ("Print the second cube.", "Save to Disk ▸ print"),
             ("Compare the cubes: squeeze the walls, press the top faces, and note pillowing or gaps over the infill.", "Hand test: wall flex + roof sag"),
+            ("Load optimize-1.stl through optimize-4.stl, orient each for minimum support, and record Cura's estimated time/material before choosing the most efficient printable variant.", "Open four models ▸ Auto Orient/Rotate ▸ Slice ▸ record estimates"),
         ],
-        test="The grid 30% cube is noticeably stiffer and its roof better supported; you can articulate the pattern/density/time trade-off for a production part.",
+        test="The grid 30% cube is stiffer and better supported, while your four-variant scorecard shows that geometry and orientation can outweigh infill choice; your final recommendation is backed by time, material and support evidence.",
     ),
     dict(
         num=13, topic=3,
@@ -47,7 +69,14 @@ DOMAIN3 = [
         objective="A5 — optimise layer height and top thickness for surface quality vs speed",
         desc="Slice the same model at 0.1 mm, 0.2 mm and 0.3 mm layer heights, adjust top thickness to a constant, and compare surface quality against print time.",
         build="Sliced (and optionally printed) evidence of the layer-height ladder: finish vs time.",
-        services="Ultimaker Cura, cube10.stl, FDM printer",
+        services="Ultimaker Cura, cube10.stl, sloped-cube.stl, FDM printer",
+        assets=[
+            dict(source="reference/stl files2 /slopedcube.stl", name="sloped-cube.stl", purpose="Sloped-face benchmark that makes layer-height stair-stepping easy to compare."),
+        ],
+        evidence=[
+            "Three-row layer-height table with layer count, print time and observed stair-stepping.",
+            "Matched Preview screenshots of the sloped face at 0.1, 0.2 and 0.3 mm.",
+        ],
         img=["s109_6267ac3f.png", "s108_543672a4.png"],
         steps=[
             ("Open cube10.stl and slice at 0.2 mm layer height; record the time.", "Quality ▸ Layer Height — 0.2 mm"),
@@ -56,8 +85,9 @@ DOMAIN3 = [
             ("Keep top thickness constant at 0.8 mm — so the TOP LAYER COUNT changes with layer height (8 / 4 / 3 layers).", "Top/Bottom ▸ Top Thickness — 0.8 mm"),
             ("In Preview, compare side-wall stair-stepping and the roof at each height.", "Preview ▸ compare walls + roof"),
             ("Print the 0.1 mm and 0.3 mm cubes and compare finish by eye and touch.", "print both"),
+            ("Repeat the three slices with sloped-cube.stl and zoom into the sloped face; this geometry makes the staircase effect visible in Preview before printing.", "Open sloped-cube.stl ▸ Slice at 0.1 / 0.2 / 0.3 mm ▸ compare"),
         ],
-        test="You can rank the three layer heights by surface quality and by print time, and state why top thickness (not top layer count) is the setting to keep constant.",
+        test="You can rank the layer heights by finish and time, point to visible stair-stepping on sloped-cube.stl, and explain why constant top thickness—not a fixed top-layer count—keeps the comparison fair.",
     ),
     dict(
         num=14, topic=3,
@@ -65,7 +95,14 @@ DOMAIN3 = [
         objective="A5 — apply ironing to improve top-surface quality and assess its cost",
         desc="Enable Cura's ironing feature, which passes the hot nozzle over the top surface with a tiny extrusion, and compare the top finish with and without it.",
         build="Two cube prints — ironed and standard — demonstrating the top-surface improvement.",
-        services="Ultimaker Cura, cube10.stl, FDM printer",
+        services="Ultimaker Cura, cube10.stl, z-block.stl, FDM printer",
+        assets=[
+            dict(source="reference/stl files2 /zblock.stl", name="z-block.stl", purpose="Detailed top-surface benchmark for evaluating ironing around raised geometry."),
+        ],
+        evidence=[
+            "Control-versus-ironed time/material record.",
+            "Raking-light photos comparing the flat and detailed top surfaces.",
+        ],
         img=["s113_6030b151.png", "s112_827b080b.png"],
         steps=[
             ("Open cube10.stl and slice with the standard 0.2 mm profile; print cube 1 as the control.", "Slice ▸ print control cube"),
@@ -74,8 +111,9 @@ DOMAIN3 = [
             ("Slice and note the added time (ironing is slow but only on top faces).", "Slice ▸ record extra minutes"),
             ("Print cube 2 with ironing enabled.", "Save to Disk ▸ print"),
             ("Compare the two top faces under raking light: the ironed face should be near-flat with faint tool lines.", "Visual + touch comparison"),
+            ("Repeat the Preview comparison with z-block.stl to inspect how ironing travels around raised detail; print it only if time permits.", "Open z-block.stl ▸ Enable Ironing ▸ Preview top layers"),
         ],
-        test="The ironed cube's top face is visibly smoother and flatter than the control's, and you can state when the extra time is worth it (visible top faces, lids, logos).",
+        test="The ironed cube is visibly smoother than the control, z-block.stl shows ironing constrained to eligible top faces, and you can justify the added time for lids, logos and presentation surfaces.",
     ),
     dict(
         num=15, topic=3,
@@ -83,7 +121,14 @@ DOMAIN3 = [
         objective="A5 — apply fuzzy skin as a deliberate surface-texture treatment",
         desc="Enable fuzzy skin on a vase model so the outer wall is jittered into a stone-like texture that hides layer lines, and print it with buildplate adhesion.",
         build="A vase with a uniform fuzzy texture that masks layer lines completely.",
-        services="Ultimaker Cura, open vase.stl, FDM printer",
+        services="Ultimaker Cura, open vase.stl, 1.5mm-wall-vase.stl, FDM printer",
+        assets=[
+            dict(source="reference/stl files2 /1.5mm_wall_vase.stl", name="1.5mm-wall-vase.stl", purpose="Thin-walled vase benchmark for comparing fuzzy skin with wall-thickness constraints."),
+        ],
+        evidence=[
+            "Cura Preview showing fuzzy-skin jitter and the 1.5 mm wall toolpaths.",
+            "Close-up photo and tactile assessment of the finished texture.",
+        ],
         img=["s114_68aaacd7.png", "s110_11452587.png"],
         steps=[
             ("Open 'open vase.stl' in Cura.", "File ▸ Open ▸ open vase.stl"),
@@ -92,8 +137,9 @@ DOMAIN3 = [
             ("Add a brim so the tall thin vase stays anchored.", "Build Plate Adhesion ▸ Brim"),
             ("Slice and inspect the jittered outer wall in Preview.", "Slice ▸ Preview ▸ outer wall"),
             ("Print the vase and examine the texture — layer lines should be invisible within the fuzz.", "print + inspect"),
+            ("Open 1.5mm-wall-vase.stl and verify the chosen fuzzy-skin thickness will not consume the thin wall; reduce the effect if Preview shows unstable or missing wall paths.", "Open 1.5mm-wall-vase.stl ▸ Preview ▸ Line Type ▸ inspect wall continuity"),
         ],
-        test="The printed vase carries an even, tactile texture on every outer wall with no visible layer banding — a finish achieved purely in slicing, with zero post-processing.",
+        test="The printed vase carries an even tactile texture, and the 1.5 mm diagnostic vase retains continuous walls in Preview—showing that the texture setting fits the available wall thickness.",
     ),
     dict(
         num=16, topic=3,
@@ -101,7 +147,14 @@ DOMAIN3 = [
         objective="A5 — apply post-processing to lift the quality of an FDM part",
         desc="Print the vase tilted so it needs supports, remove them cleanly, then sand the scarred surfaces through progressive grits to a smooth finish.",
         build="A tilted-print vase taken from raw support-scarred print to a smooth finished part.",
-        services="Ultimaker Cura, open vase.stl, FDM printer, pliers, sandpaper 120→400 grit",
+        services="Ultimaker Cura, open vase.stl, test-part.stl, FDM printer, pliers, sandpaper 120→400 grit",
+        assets=[
+            dict(source="reference/stl files2 /testpart.stl", name="test-part.stl", purpose="Mixed-feature benchmark for planning support removal and progressive finishing."),
+        ],
+        evidence=[
+            "Annotated before/after photographs of support scars and the sanded surface.",
+            "Finishing log with tools, grit sequence, time and observed dimensional/detail loss.",
+        ],
         img=["s118_7b4d2015.png", "s133_d4499059.png"],
         steps=[
             ("Open 'open vase.stl' in Cura and rotate it 15–20° off vertical so one side overhangs.", "Rotate — 15–20° tilt"),
@@ -110,7 +163,8 @@ DOMAIN3 = [
             ("Snap the supports off with pliers, working from the outer edge toward the part.", "Needle-nose pliers"),
             ("Sand the support-scarred areas with 120-grit, then step through 240 → 400 grit in circular motions.", "Sandpaper 120 → 240 → 400"),
             ("Optionally wet-sand at 400 grit for a satin finish, and compare the treated side with an untouched area.", "Wet sand + compare"),
+            ("Inspect test-part.stl in Cura and write a finishing plan before printing: support access, tool order, surfaces to protect and dimensions that sanding must not change.", "Open test-part.stl ▸ Preview supports ▸ annotate finishing plan"),
         ],
-        test="The support side of the vase is smooth to the touch with no visible scars from a normal viewing distance — the part looks moulded rather than printed.",
+        test="The support side is smooth from a normal viewing distance, and your evidence shows a planned 120→240→400 grit process that removes scars without rounding protected features or critical dimensions.",
     ),
 ]
